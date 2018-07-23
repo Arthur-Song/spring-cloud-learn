@@ -1,0 +1,20 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: @project.artifactId@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+
+author:
+  name: "Arthur Song"
+  favorite-number: ${random.int}
+  email: "arthurdev@163.com"
+  website: "http://arthursong.com"
+  github: "https://github.com/Arthur-Song"
+  greeting: "大家好，我是${author.name},如果觉得本文对您有用的话，请给个赞吧，谢谢！"
