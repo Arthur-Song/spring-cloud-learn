@@ -1,11 +1,13 @@
 package com.arthursong.demo;
 
+import com.arthursong.demo.ping.MyPing;
 import com.arthursong.demo.rule.MyRule;
 import com.netflix.client.ClientFactory;
 import com.netflix.client.http.HttpRequest;
 import com.netflix.client.http.HttpResponse;
 import com.netflix.config.ConfigurationManager;
 import com.netflix.loadbalancer.BaseLoadBalancer;
+import com.netflix.loadbalancer.PingUrl;
 import com.netflix.loadbalancer.Server;
 import com.netflix.niws.client.http.RestClient;
 import lombok.extern.slf4j.Slf4j;
@@ -97,6 +99,81 @@ public class FirstRibbonClientApplicationTests {
 			HttpResponse response = client.executeWithLoadBalancer(request);
 			String result = response.getEntity(String.class);
 			log.info(result);
+		}
+	}
+
+	@Test
+	public void testPingUrl() throws Exception{
+		// 创建负载均衡器
+		BaseLoadBalancer lb = new BaseLoadBalancer();
+		// 添加服务器
+		List<Server> servers = new ArrayList<Server>();
+		// 8080端口连接正常
+		servers.add(new Server("localhost", 8080));
+		// 一个不存在的端口
+		servers.add(new Server("localhost", 8888));
+		lb.addServers(servers);
+		// 设置IPing实现类
+		lb.setPing(new PingUrl());
+		// 设置Ping时间间隔为2秒
+		lb.setPingInterval(2);
+		Thread.sleep(6000);
+		for(Server s : lb.getAllServers()) {
+			log.info(s.getHostPort() + " 状态：" + s.isAlive());
+		}
+	}
+
+	@Test
+	public void testPingUrl2() throws Exception{
+		// 设置请求的服务器
+		ConfigurationManager.getConfigInstance().setProperty(
+				"my-client.ribbon.listOfServers",
+				"localhost:8080,localhost:8888");
+		// 配置Ping处理类
+		ConfigurationManager.getConfigInstance().setProperty(
+				"my-client.ribbon.NFLoadBalancerPingClassName",
+				PingUrl.class.getName());
+		// 配置Ping时间间隔
+		ConfigurationManager.getConfigInstance().setProperty(
+				"my-client.ribbon.NFLoadBalancerPingInterval",
+				2);
+		// 获取REST请求客户端
+		RestClient client = (RestClient) ClientFactory
+				.getNamedClient("my-client");
+		Thread.sleep(6000);
+		// 获取全部服务器
+		List<Server> servers = client.getLoadBalancer().getAllServers();
+		System.out.println(servers.size());
+		// 输出状态
+		for(Server s : servers) {
+			log.info(s.getHostPort() + " 状态：" + s.isAlive());
+		}
+	}
+
+	@Test
+	public void testMyPing() throws Exception{
+		// 设置请求的服务器
+		ConfigurationManager.getConfigInstance().setProperty(
+				"my-client.ribbon.listOfServers",
+				"localhost:8080,localhost:8888");
+		// 配置Ping处理类
+		ConfigurationManager.getConfigInstance().setProperty(
+				"my-client.ribbon.NFLoadBalancerPingClassName",
+				MyPing.class.getName());
+		// 配置Ping时间间隔
+		ConfigurationManager.getConfigInstance().setProperty(
+				"my-client.ribbon.NFLoadBalancerPingInterval",
+				2);
+		// 获取REST请求客户端
+		RestClient client = (RestClient) ClientFactory
+				.getNamedClient("my-client");
+		Thread.sleep(6000);
+		// 获取全部服务器
+		List<Server> servers = client.getLoadBalancer().getAllServers();
+		log.info("size:"+servers.size());
+		// 输出状态
+		for(Server s : servers) {
+			log.info(s.getHostPort() + " 状态：" + s.isAlive());
 		}
 	}
 
