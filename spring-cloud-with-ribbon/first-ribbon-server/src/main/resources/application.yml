@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: server-2
+    active: server-1
 
 ---
 server:
