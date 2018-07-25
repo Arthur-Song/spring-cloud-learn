@@ -11,6 +11,7 @@
     <modules>
         <module>spring-cloud-with-eureka</module>
         <module>spring-cloud-with-ribbon</module>
+        <module>spring-cloud-with-feign</module>
     </modules>
 
     <parent>
