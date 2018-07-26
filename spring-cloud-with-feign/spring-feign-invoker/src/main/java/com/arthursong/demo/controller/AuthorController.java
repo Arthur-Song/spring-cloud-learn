@@ -17,4 +17,9 @@ public class AuthorController {
     public String author(){
         return authorClient.author();
     }
+
+    @GetMapping("/myAuthor")
+    public String myAuthor(){
+        return authorClient.myAuthor();
+    }
 }

@@ -1,5 +1,6 @@
 package com.arthursong.demo.client;
 
+import com.arthursong.demo.config.MyUrl;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -10,4 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface AuthorClient {
     @GetMapping("/author")
     public String author();
+
+    @MyUrl(method = "GET", url = "/author")
+    public String myAuthor();
 }

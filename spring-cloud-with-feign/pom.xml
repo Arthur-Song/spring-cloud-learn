@@ -17,6 +17,8 @@
     </parent>
 
     <modules>
-
+        <module>spring-feign-invoker</module>
+        <module>spring-feign-provider</module>
+        <module>spring-feign-server</module>
     </modules>
 </project>
