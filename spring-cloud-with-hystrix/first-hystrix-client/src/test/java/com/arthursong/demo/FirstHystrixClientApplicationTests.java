@@ -1,9 +1,15 @@
 package com.arthursong.demo;
 
+import com.arthursong.demo.collapser.MyHystrixCollapser;
 import com.arthursong.demo.command.*;
+import com.arthursong.demo.entity.Person;
 import com.netflix.config.ConfigurationManager;
+import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixCommandMetrics;
 import com.netflix.hystrix.HystrixCommandProperties;
+import com.netflix.hystrix.HystrixRequestCache;
+import com.netflix.hystrix.strategy.concurrency.HystrixConcurrencyStrategyDefault;
+import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import rx.Observable;
 import rx.Observer;
+
+import java.util.concurrent.Future;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -212,5 +220,56 @@ public class FirstHystrixClientApplicationTests {
 			t.start();
 		}
 		Thread.sleep(5000);
+	}
+
+	@Test
+	public void testCollapse() throws Exception{
+		// 收集 1 秒内发生的请求，合并为一个命令执行
+		ConfigurationManager.getConfigInstance().setProperty(
+				"hystrix.collapser.default.timerDelayInMilliseconds", 1000);
+		// 请求上下文
+		HystrixRequestContext context = HystrixRequestContext
+				.initializeContext();
+		// 创建请求合并处理器
+		MyHystrixCollapser c1 = new MyHystrixCollapser("Angus");
+		MyHystrixCollapser c2 = new MyHystrixCollapser("Crazyit");
+		MyHystrixCollapser c3 = new MyHystrixCollapser("Sune");
+		MyHystrixCollapser c4 = new MyHystrixCollapser("Paris");
+		// 异步执行
+		Future<Person> f1 = c1.queue();
+		Future<Person> f2 = c2.queue();
+		Future<Person> f3 = c3.queue();
+		Future<Person> f4 = c4.queue();
+		log.info(f1.get().toString());
+		log.info(f2.get().toString());
+		log.info(f3.get().toString());
+		log.info(f4.get().toString());
+		context.shutdown();
+	}
+
+	@Test
+	public void testCache() throws Exception{
+		// 初始化请求上下文
+		HystrixRequestContext context = HystrixRequestContext.initializeContext();
+		// 请求正常的服务
+		String key = "cache-key";
+		CacheCommand c1 = new CacheCommand(key);
+		CacheCommand c2 = new CacheCommand(key);
+		CacheCommand c3 = new CacheCommand(key);
+		// 输出结果
+		log.info(c1.execute() + "c1 是否读取缓存: " + c1.isResponseFromCache());
+		log.info(c2.execute() + "c2 是否读取缓存: " + c2.isResponseFromCache());
+		log.info(c3.execute() + "c3 是否读取缓存: " + c3.isResponseFromCache());
+		// 获取缓存实例
+		HystrixRequestCache cache = HystrixRequestCache.getInstance(
+				HystrixCommandKey.Factory.asKey("MyCommandKey"),
+				HystrixConcurrencyStrategyDefault.getInstance());
+		// 清空缓存
+		cache.clear(key);
+		// 重新执行命令
+		CacheCommand c4 = new CacheCommand(key);
+		log.info(c4.execute() + "c4 是否读取缓存: " + c4.isResponseFromCache());
+
+		context.shutdown();
 	}
 }
