@@ -13,6 +13,7 @@
         <module>spring-cloud-with-ribbon</module>
         <module>spring-cloud-with-feign</module>
         <module>spring-cloud-with-hystrix</module>
+        <module>spring-cloud-with-zuul</module>
     </modules>
 
     <parent>

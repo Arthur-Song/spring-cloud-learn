@@ -1,0 +1,6 @@
+server:
+  port: 8080
+zuul:
+  routes:
+    first-provider:
+      url: http://localhost:8090
