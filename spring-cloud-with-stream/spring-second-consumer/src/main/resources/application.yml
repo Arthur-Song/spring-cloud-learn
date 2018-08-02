@@ -1,16 +1,16 @@
 server:
-  port: 8080
+  port: 8082
 spring:
   application:
-    name: @project.artifactId@
+    name: @artifactId@
   cloud:
     stream:
       bindings:
         myInput:
-          group: groupA
+          group: groupB
 eureka:
   instance:
     hostname: localhost
   client:
-    service-url:
-      default-zone: http://localhost:8761/eureka/
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

@@ -24,4 +24,12 @@ public class ProducerController {
         sendService.sendOrder().send(message);
         return "SUCCESS";
     }
+
+    @GetMapping("/output")
+    public String testSource() {
+        // 创建消息
+        Message msg = MessageBuilder.withPayload("Hello World 2".getBytes()).build();
+        sendService.output().send(msg);
+        return "SUCCESS";
+    }
 }

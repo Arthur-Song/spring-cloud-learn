@@ -17,8 +17,4 @@ public class ConsumeService {
         log.info("Consume Msg :"+new String(msg));
     }
 
-    @StreamListener(Sink.INPUT)
-    public void receiveInput(byte[] msg){
-        log.info("Consume Msg :"+new String(msg));
-    }
 }

@@ -20,6 +20,8 @@
         <module>eureka-server</module>
         <module>spring-consumer</module>
         <module>spring-producer</module>
+        <module>spring-second-consumer</module>
+        <module>spring-third-consumer</module>
     </modules>
 
 </project>

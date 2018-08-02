@@ -10,4 +10,7 @@ public interface SendService {
 
     @Output("myInput")
     SubscribableChannel sendOrder();
+
+    @Output("input")
+    SubscribableChannel output();
 }
