@@ -14,6 +14,7 @@
         <module>spring-cloud-with-feign</module>
         <module>spring-cloud-with-hystrix</module>
         <module>spring-cloud-with-zuul</module>
+        <module>spring-cloud-with-stream</module>
     </modules>
 
     <parent>
