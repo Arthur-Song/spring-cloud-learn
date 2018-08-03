@@ -15,6 +15,7 @@
         <module>spring-cloud-with-hystrix</module>
         <module>spring-cloud-with-zuul</module>
         <module>spring-cloud-with-stream</module>
+        <module>spring-cloud-with-config</module>
     </modules>
 
     <parent>

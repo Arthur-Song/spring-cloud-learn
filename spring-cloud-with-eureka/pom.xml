@@ -19,6 +19,8 @@
 
 	<modules>
 		<module>first-eureka-server</module>
+		<module>first-eureka-service-invoker</module>
+		<module>first-eureka-service-provider</module>
 	</modules>
 
 </project>
