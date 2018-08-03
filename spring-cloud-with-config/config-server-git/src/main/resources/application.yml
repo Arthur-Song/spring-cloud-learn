@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/arthur-song/spring-cloud-learn-config
+          search-paths: spring-cloud-with-config/config-server-git
+          username: your username
+          password: your password
+      label: master
+server:
+  port: 8769
