@@ -1,0 +1,20 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: @artifactId@
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      percentage: 1.0
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.sleuth: DEBUG

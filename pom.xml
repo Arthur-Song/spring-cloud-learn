@@ -16,6 +16,7 @@
         <module>spring-cloud-with-zuul</module>
         <module>spring-cloud-with-stream</module>
         <module>spring-cloud-with-config</module>
+        <module>spring-cloud-with-sleuth</module>
     </modules>
 
     <parent>
