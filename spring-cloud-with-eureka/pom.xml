@@ -18,6 +18,10 @@
 	</parent>
 
 	<modules>
+		<module>first-cloud-server</module>
+		<module>first-cloud-provider</module>
+		<module>first-cloud-invoker</module>
+		<module>first-cloud-rest-client</module>
 		<module>first-eureka-server</module>
 		<module>first-eureka-service-invoker</module>
 		<module>first-eureka-service-provider</module>
