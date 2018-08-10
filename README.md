@@ -9,8 +9,8 @@
 
 - [服务治理：Spring Cloud Eureka](http://arthursong.com/archives/396)
 - [Eureka 集群搭建](http://arthursong.com/archives/565)
-- [服务实例的健康自检]
-- [Eureka 的常用配置]
+- [服务实例的健康自检](http://arthursong.com/archives/572)
+- [Eureka 的常用配置](http://arthursong.com/archives/570)
 - [客户端负载均衡：Spring Cloud Ribbon](http://arthursong.com/archives/416)
 - [在Spring Cloud 中使用Ribbon]
 - [声明式服务调用：Spring Cloud Feign]
