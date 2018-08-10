@@ -25,6 +25,9 @@
 		<module>first-eureka-server</module>
 		<module>first-eureka-service-invoker</module>
 		<module>first-eureka-service-provider</module>
+		<module>health-handle-provider</module>
+		<module>health-handler-invoker</module>
+		<module>health-handler-server</module>
 	</modules>
 
 </project>
