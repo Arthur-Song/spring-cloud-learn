@@ -1,0 +1,19 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    loadbalancer:
+      retry: false
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+#cloud-provider:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.arthursong.demo.config.MyRule
+#    NFLoadBalancerPingClassName: com.arthursong.demo.config.MyPing
+#    listOfServers: http://localhost:8080/,http://localhost:8081/

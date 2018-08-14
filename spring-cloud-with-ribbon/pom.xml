@@ -19,6 +19,10 @@
     <modules>
         <module>first-ribbon-client</module>
         <module>first-ribbon-server</module>
+        <module>ribbon-cloud-invoker</module>
+        <module>ribbon-cloud-provider</module>
+        <module>ribbon-cloud-server</module>
+        <module>rest-template-test</module>
     </modules>
 
 </project>
