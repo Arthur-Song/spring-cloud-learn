@@ -13,7 +13,7 @@
 - [服务实例的健康自检](http://arthursong.com/archives/572)
 - [Eureka 的常用配置](http://arthursong.com/archives/570)
 - [客户端负载均衡：Spring Cloud Ribbon](http://arthursong.com/archives/416)
-- [在Spring Cloud 中使用Ribbon]
+- [在Spring Cloud 中使用Ribbon](http://arthursong.com/archives/584)
 - [声明式服务调用：Spring Cloud Feign]
 - [Spring Cloud中使用Feign](http://arthursong.com/archives/425)
 - [服务容错保护：Spring Cloud Hystrix](http://arthursong.com/archives/430)
