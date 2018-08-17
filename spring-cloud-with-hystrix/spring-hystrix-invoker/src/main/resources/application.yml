@@ -1,0 +1,27 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: @project.artifactId@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    HelloClient#hello():
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 500
+      circuitBreaker:
+        requestVolumeThreshold: 3
+#默认时间段内发生的请求数
+#hystrix.command.default.circuitBreaker.requestVolumeThreshold: 3
+#超时时间
+#hystrix.command.default.execution.isolation.thread.timeoutinMilliseconds: 500

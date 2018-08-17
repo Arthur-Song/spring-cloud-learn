@@ -16,5 +16,8 @@
     <modules>
         <module>first-hystrix-client</module>
         <module>first-hystrix-server</module>
+        <module>spring-hystrix-invoker</module>
+        <module>spring-hystrix-provider</module>
+        <module>spring-hystrix-server</module>
     </modules>
 </project>
