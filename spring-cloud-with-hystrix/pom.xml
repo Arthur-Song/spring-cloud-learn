@@ -19,5 +19,6 @@
         <module>spring-hystrix-invoker</module>
         <module>spring-hystrix-provider</module>
         <module>spring-hystrix-server</module>
+        <module>hystrix-dashboard</module>
     </modules>
 </project>

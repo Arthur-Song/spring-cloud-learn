@@ -1,9 +1,7 @@
 package com.arthursong.demo.controller;
 
 import com.arthursong.demo.entity.Person;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Administrator on 2018/8/17.
@@ -19,5 +17,11 @@ public class PersonController {
         person.setAge(22);
         person.setMessage("success");
         return person;
+    }
+
+    @GetMapping("/hello")
+    public String hello() throws Exception {
+        Thread.sleep(800);
+        return "Hello World";
     }
 }

@@ -25,3 +25,6 @@ hystrix:
 #hystrix.command.default.circuitBreaker.requestVolumeThreshold: 3
 #超时时间
 #hystrix.command.default.execution.isolation.thread.timeoutinMilliseconds: 500
+
+#指定commandKey配置
+#hystrix.command.CommandKey.circuitBreaker.requestVolumeThreshold: 3
